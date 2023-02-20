@@ -2,6 +2,7 @@ import time
 import webbrowser
 from fpdf import FPDF
 import os
+import filestack
 
 
 class PDFReport:
@@ -20,7 +21,10 @@ class PDFReport:
 				self.pdf.cell(40, 10, txt=str(round(float(value[index]), 2)), border=True, ln=1)
 
 		self.pdf.cell(40, 10, txt=f"Billed at {time.strftime('%H:%M:%S - %d/%m%Y')}.")
+		client = filestack.Client(os.getenv('FILESTACK_ACCESS_KEY'))
 
+		new_file = client.upload(filepath="misc_files/report.pdf")
+		print(new_file.url)
 		os.chdir('misc_files')
 		self.pdf.output("report.pdf")
 		webbrowser.open('report.pdf')
