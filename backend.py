@@ -21,10 +21,9 @@ class PDFReport:
 		self.pdf.cell(40, 10, txt=str(round(float(amount2), 2)), border=True, ln=1)
 
 		self.pdf.cell(40, 10, txt=f"Billed at {time.strftime('%H:%M:%S - %d/%m%Y')}.")
-
-		os.chdir('misc_files')
-		self.pdf.output("report.pdf")
-		webbrowser.open('report.pdf')
+		self.pdf.output("misc_files/report.pdf")
+		os.chdir("misc_files")
+		webbrowser.open('file:/C:/Users/codsp/PycharmProjects/flatmatesbill/misc_files/report.pdf')
 
 	def get_url(self):
 		return self.new_file.url

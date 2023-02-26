@@ -20,9 +20,6 @@ class BillFormPage(MethodView):
 		bill_form = BillForm()
 		return render_template('bill.html', bill_form=bill_form)
 
-
-class ResultsPage(MethodView):
-
 	def post(self):
 		bill_form = BillForm(request.form)
 		amount = int(bill_form.amount.data)
@@ -34,7 +31,7 @@ class ResultsPage(MethodView):
 		person1_amount, person2_amount = bill.calc_amount(person_1_days, person_2_days)
 		PDFReport(person1_name, person2_name, person1_amount, person2_amount)
 		result = f"{person1_name.title()} pays {person1_amount} <br> {person2_name.title()} pays {person2_amount}"
-		return result
+		return render_template('bill.html', bill_form=bill_form, result=result)
 
 
 class BillForm(Form):
@@ -49,5 +46,4 @@ class BillForm(Form):
 if __name__ == '__main__':
 	app.add_url_rule('/', view_func=HomePage.as_view('home'))
 	app.add_url_rule('/bill/', view_func=BillFormPage.as_view('bill'))
-	app.add_url_rule('/result/', view_func=ResultsPage.as_view('results'))
 	app.run(debug=True)
