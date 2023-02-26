@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill Form Page</title>
+	<link rel="stylesheet" href="../static/main.css">
+</head>
+<body style="font-family: Helvetica; background-color: slategrey">
+	<h1>Bill Form</h1>
+	<p>Form for calculating the amount each flatmate should pay. <br>
+	Press the submit button to submit the form.</p>
+	<form action="/result/" method="post">
+		{{bill_form.amount.label}} {{bill_form.amount}}
+		<hr>
+		<h3>First Flatmate</h3>
+		{{bill_form.flatmate1.label}} {{bill_form.flatmate1}}
+		{{bill_form.days_in_house1.label}} {{bill_form.days_in_house1}}
+		<hr>
+		<h3>Second Flatmate</h3>
+		{{bill_form.flatmate2.label}} {{bill_form.flatmate2}}
+		{{bill_form.days_in_house2.label}} {{bill_form.days_in_house2}}
+		<hr>
+		{{bill_form.submit_button}}
+	</form>
+
+</body>
+</html>
